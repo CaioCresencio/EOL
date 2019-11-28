@@ -1,4 +1,4 @@
-package config;
+package br.com.ifsp.eol.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
