@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "users")
+@Table(name = "locations")
 public class Location implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -21,9 +21,7 @@ public class Location implements Serializable {
     public Location() {
     }
 
-    public Location(Integer id, String street, String number, String neighborhood, String cep, String city) {
-        super();
-        this.id = id;
+    public Location( String street, String number, String neighborhood, String cep, String city) {
         this.street = street;
         this.number = number;
         this.neighborhood = neighborhood;
