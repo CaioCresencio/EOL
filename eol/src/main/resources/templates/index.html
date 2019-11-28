@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sing In</title>
+</head>
+<body>
+    <h1>Hello World</h1>
+    <form method="post">
+        <input type="text" name="email"  placeholder="Email"/>
+        <br/>
+        <input type="password" name="password" placeholder="Password"/>
+        <br/>
+        <input type="submit" value="SIGN IN"/>
+    </form>
+    <a th:href="@{/sign_up}">Sign Up</a>
+</body>
+</html>

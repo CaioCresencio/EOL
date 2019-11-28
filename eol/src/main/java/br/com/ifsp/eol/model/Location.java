@@ -14,19 +14,19 @@ public class Location implements Serializable {
 
     private String street;
     private String number;
-    private String bairro;
+    private String neighborhood;
     private String cep;
     private String city;
 
     public Location() {
     }
 
-    public Location(Integer id, String street, String number, String bairro, String cep, String city) {
+    public Location(Integer id, String street, String number, String neighborhood, String cep, String city) {
         super();
         this.id = id;
         this.street = street;
         this.number = number;
-        this.bairro = bairro;
+        this.neighborhood = neighborhood;
         this.cep = cep;
         this.city = city;
     }
@@ -55,12 +55,12 @@ public class Location implements Serializable {
         this.number = number;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getNeighborhood() {
+        return neighborhood;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setBNeighborhood(String neighborhood) {
+        this.neighborhood = neighborhood;
     }
 
     public String getCep() {
