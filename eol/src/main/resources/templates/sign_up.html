@@ -1,24 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Sign UP</title>
 </head>
-<body>
-    <h1>Sign Up EOL</h1>
-    <form method="post">
-        <input type="text" name="name"  placeholder="name"/>
-        <br/>
-        <input type="text" name="phone"  placeholder="Phone"/>
-        <br/>
-        <input type="email" name="email"  placeholder="Email"/>
-        <br/>
-        <input type="password" name="password" placeholder="Password"/>
-        <br/>
-        <input type="text" name="cpf"  placeholder="CPF"/>
-        <br/>
-        <input type="submit" value="SIGN UP"/>
-    </form>
-    <a th:href="@{/sign_up_installer}">Sign Up</a>
+
+<body class="bg-dark">
+<div class="container justify-content-center d-flex align-items-center " style="height:100vh;" ;>
+    <div class="row flex-column p-4 border rounded bg-light align-items-center m-2 m-md-0">
+        <h1 class="text-center">Sign Up EOL System</h1>
+        <form class="mt-4" method="post" style="max-width:420px;">
+            <div class="form-row justify-content-center">
+                <div class="col-md-12">
+                    <input type="text" class="form-control" name="name" placeholder="Name" />
+                </div>
+            </div>
+            <div class="form-row justify-content-center ">
+                <div class="col-md-6 mt-2  ">
+                    <input type="text" class="form-control" name="cpf" placeholder="CPF" />
+                </div>
+                <div class="col-md-6 mt-2  ">
+                    <input type="text" class="form-control" name="phone" placeholder="Phone" />
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <div class="col-md-6 mt-2">
+                    <input type="email" class="form-control" name="email" placeholder="Email" />
+                </div>
+
+                <div class="col-md-6 mt-2 ">
+                    <input type="password" class="form-control" name="password" placeholder="Password" />
+                </div>
+            </div>
+            <div class="d-flex justify-content-center  mt-4">
+                <input class="btn-dark border rounded" type="submit" value="SIGN UP" />
+            </div>
+        </form>
+        <a class="mt-2" th:href="@{/sign_up_installer}">Sign Up</a>
+    </div>
+</div>
 </body>
+
 </html>
