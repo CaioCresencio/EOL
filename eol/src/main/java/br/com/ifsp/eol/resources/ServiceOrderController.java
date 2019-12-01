@@ -6,6 +6,7 @@ import br.com.ifsp.eol.model.User;
 import br.com.ifsp.eol.services.LocationService;
 import br.com.ifsp.eol.services.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class ServiceOrderController {
     }
 
     @PostMapping
-    public String createServiceOrder(ServiceOrder order, User user) {
+    public String createServiceOrder(ServiceOrder order, @AuthenticationPrincipal User user) {
         locationService.save(order.getLocation());
         order.setClient(user);
         serviceOrderService.save(order);

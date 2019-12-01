@@ -57,7 +57,7 @@ public class Location implements Serializable {
         return neighborhood;
     }
 
-    public void setBNeighborhood(String neighborhood) {
+    public void setNeighborhood(String neighborhood) {
         this.neighborhood = neighborhood;
     }
 
