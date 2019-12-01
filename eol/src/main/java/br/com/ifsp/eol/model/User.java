@@ -28,6 +28,7 @@ public class User implements Serializable {
     private Set<Integer> roles = new HashSet<>();
 
     public User() {
+        addRole(Role.USER);
     }
 
     public User(String nome, String email, String cpf, String phone, String senha) {

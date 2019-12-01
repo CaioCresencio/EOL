@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Solicitar Ordem de Serviço</title>
+</head>
+<body>
+    <h2>Solicite um serviço para a instalação</h2>
+
+    <form method="post" th:object="${serviceOrder}"th:action="@{/service-order}">
+        <legend>Tipo de plano: </legend>
+        <label>
+            <input type="radio" th:field="*{TypeOrder}" th:value="Monofasico" checked="checked"/> Monofásico
+        </label>
+        <label>
+            <input type="radio" th:field="*{TypeOrder}" th:value="Bifasico"/> Bifásico
+        </label>
+        <label>
+            <input type="radio" th:field="*{TypeOrder}" th:value="Trifasico"/> Trifásico
+        </label>
+
+        <br>
+
+        <label>Rua:</label>
+        <input type="text" th:field="*{location.street}" required>
+        <br>
+
+        <label>Numero:</label>
+        <input type="text" th:field="*{location.number}" required>
+        <br>
+
+        <label>Bairro:</label>
+        <input type="text" th:field="*{location.neighborhood}" required>
+        <br>
+
+        <label>Cidade:</label>
+        <input type="text" th:field="*{location.city}" required>
+        <br>
+
+        <label>Cep:</label>
+        <input type="text" th:field="*{location.cep}" required>
+        <br>
+
+        <input type="submit" value="Solicitar">
+
+    </form>
+
+</body>
+</html>
