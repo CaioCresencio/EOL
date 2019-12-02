@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br"  xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="pt-br"  xmlns:th="http://www.w3.org/1999/xhtml"  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <meta charset="UTF-8">
@@ -28,9 +28,23 @@
 <div class="main">
     <div class="menu" id="menu">
         <ul>
-            <li><a href="index.html">Relatório</a></li>
-            <li class="active"><a href="#">Cadastrar técnico</a></li>
-            <li class=""><a href="#">Sair</a></li>
+            <li ><a th:href="@{/}">Inicio</a></li>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <li><a th:href="@{sign_up_installer}">Cadastrar técnico</a></li>
+            </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <li><a th:href="@{list_os}">Listar OS's</a></li>
+            </div>
+            <div sec:authorize="hasRole('ROLE_USER')">
+                <li><a  class="active" th:href="@{/service-order}">Criar nova OS</a></li>
+            </div>
+            <div sec:authorize="!isAuthenticated()">
+                <li><a th:href="@{/login}">Login</a></li>
+            </div>
+            <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <li><input type="submit"  class="nav-link" value="Sair do sistema"></li>
+            </form>
+
         </ul>
     </div>
     <div class="container-fluid mt-4">
@@ -38,42 +52,47 @@
         <div class="container flex-column " style="height:100vh;" ;>
             <h2>Solicite um serviço para a instalação</h2>
 
-            <form method="post" th:object="${serviceOrder}"th:action="@{/service-order}">
+            <form method="post" th:object="${serviceOrder}" th:action="@{/service-order}" style="max-width: 600px;">
                 <legend>Tipo de plano: </legend>
                 <label>
-                    <input type="radio" th:field="*{TypeOrder}" th:value="Monofasico" checked="checked"/> Monofásico
+                    <input type="radio" th:field="*{TypeOrder}" th:value="Monofasico" checked="checked" />
+                    Monofásico
                 </label>
                 <label>
-                    <input type="radio" th:field="*{TypeOrder}" th:value="Bifasico"/> Bifásico
+                    <input type="radio" th:field="*{TypeOrder}" th:value="Bifasico" /> Bifásico
                 </label>
                 <label>
-                    <input type="radio" th:field="*{TypeOrder}" th:value="Trifasico"/> Trifásico
+                    <input type="radio" th:field="*{TypeOrder}" th:value="Trifasico" /> Trifásico
                 </label>
 
-                <br>
+                <div class="form-row justify-content-center ">
+                    <div class="col-md-6 mt-2  ">
+                        <input type="text" class="form-control" th:field="*{location.street}" placeholder="Rua"
+                               required>
+                    </div>
+                    <div class="col-md-6 mt-2  ">
+                        <input type="text" class="form-control" th:field="*{location.number}" placeholder="Numero"
+                               required>
+                    </div>
+                </div>
 
-                <label>Rua:</label>
-                <input type="text" th:field="*{location.street}" required>
-                <br>
-
-                <label>Numero:</label>
-                <input type="text" th:field="*{location.number}" required>
-                <br>
-
-                <label>Bairro:</label>
-                <input type="text" th:field="*{location.neighborhood}" required>
-                <br>
-
-                <label>Cidade:</label>
-                <input type="text" th:field="*{location.city}" required>
-                <br>
-
-                <label>Cep:</label>
-                <input type="text" th:field="*{location.cep}" required>
-                <br>
-
-                <input type="submit" value="Solicitar">
-
+                <div class="form-row justify-content-center ">
+                    <div class="col-md-4 mt-2  ">
+                        <input type="text" class="form-control" th:field="*{location.neighborhood}"
+                               placeholder="Bairro" required>
+                    </div>
+                    <div class="col-md-4 mt-2  ">
+                        <input type="text" class="form-control" th:field="*{location.city}" placeholder="Cidade"
+                               required>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <input type="text" class="form-control" th:field="*{location.cep}" placeholder="CEP"
+                               required>
+                    </div>
+                </div>
+                <div class="row">
+                    <input class="btn-dark mt-2 ml-auto " type="submit" value="Solicitar">
+                </div>
             </form>
 
         </div>

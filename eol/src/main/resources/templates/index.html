@@ -28,16 +28,18 @@
 <div class="main">
     <div class="menu" id="menu">
         <ul>
-            <li class="active"><a href="#">Inicio</a></li>
-
-           <div sec:authorize="!isAuthenticated()">
-               <li><a th:href="@{/login}">Login</a></li>
-           </div>
+            <li ><a th:href="@{/}">Inicio</a></li>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <li><a href="registerT.html">Cadastrar técnico</a></li>
+                <li><a th:href="@{sign_up_installer}">Cadastrar técnico</a></li>
+            </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <li><a class="active" th:href="@{list_os}">Listar OS's</a></li>
             </div>
             <div sec:authorize="hasRole('ROLE_USER')">
                 <li><a th:href="@{/service-order}">Criar nova OS</a></li>
+            </div>
+            <div sec:authorize="!isAuthenticated()">
+                <li><a th:href="@{/login}">Login</a></li>
             </div>
             <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
                 <li><input type="submit"  class="nav-link" value="Sair do sistema"></li>
@@ -45,72 +47,8 @@
 
         </ul>
     </div>
-    <div sec:authorize="hasRole('ROLE_ADMIN')" class="container-fluid">
-        <div class="row mt-4">
-            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-                <li class="nav-item">
-                    <a class="nav-link active" data-toggle="pill" href="#table1" role="tab"
-                       aria-controls="pills-home" aria-selected="true">Table 1</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="pill" href="#table2" role="tab" aria-controls="pills-profile"
-                       aria-selected="false">Table 2</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="pill" href="#table3" role="tab"
-                       aria-controls="pills-contact" aria-selected="false">Table 3</a>
-                </li>
-            </ul>
-        </div>
-        <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="table1" role="tabpanel">
-                <table class="table table-responsive" id="table_1" width="100%">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Primeiro</th>
-                        <th scope="col">Último</th>
-                        <th scope="col">Nickname</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+    <div class="container-fluid">
 
-                    </tbody>
-                </table>
-            </div>
-            <!--End table1-->
-            <div class="tab-pane fade" id="table2" role="tabpanel">
-                <table class="table table-responsive" id="table_2" width="100%">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Primeiro</th>
-                        <th scope="col">Último</th>
-                        <th scope="col">Nickname</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div><!-- END table 2-->
-            <div class="tab-pane fade" id="table3" role="tabpanel">
-                <table class="table table-responsive"  id="table_3" width="100%">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Primeiro</th>
-                        <th scope="col">Último</th>
-                        <th scope="col">Nickname</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </div><!-- END table 3-->
-
-        </div> <!-- END tab-content -->
     </div>
 </div>
 
