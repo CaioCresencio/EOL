@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class EolApplication implements CommandLineRunner {
@@ -24,6 +25,8 @@ public class EolApplication implements CommandLineRunner {
 
 	@Autowired
 	private LocationRepository locationRepository;
+	@Autowired
+	PasswordEncoder ps;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EolApplication.class, args);
@@ -49,5 +52,8 @@ public class EolApplication implements CommandLineRunner {
 		serviceOrderRepository.save(serviceOrder);*/
 
 
+		User user = new User("Admin", "admin@eol.com", "123456","175673", ps.encode("123"));
+		user.addRole(Role.ADMIN);
+		userRepository.save(user);
 	}
 }

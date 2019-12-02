@@ -1,0 +1,78 @@
+
+h1 {
+    font-size: 1.5rem;
+}
+
+@media screen and (max-width:500px){
+    h1{
+        font-size: 1rem;;
+    }
+}
+.main {
+    display: flex;
+    background-color: #ecf0f5;
+    min-height: calc(100vh - 52px);
+}
+.content {
+    width: 100%;
+    padding-top: 20px;
+}
+.row{
+    margin-left:0px;
+    margin-right: 0px;;
+}
+.menu {
+    width: 0;
+    border-top: 1px solid #333;
+    background-color: #444b51;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: width .5s;
+}
+.menu.menu-open{
+    width: 300px;
+}
+
+.menu ul{
+    list-style: none;
+    padding: 10px 0;
+}
+.menu ul li.active{
+    background-color:#343a40;
+}
+
+.menu ul li a{
+    display:block;
+    color:#9d9d9d;
+    padding:10px 15px;
+    white-space: nowrap;
+}
+
+.menu ul li:hover a, .menu ul li.active a{
+    color: white;
+}
+
+@media screen and (max-width:900px){
+    .menu.menu-open{
+        width:100%;
+        position: absolute;
+        min-height: calc(100vh - 52px);
+        z-index: 10;
+    }
+
+
+}
+.table .thead-dark th {
+    background-color:#343a40;
+}
+.nav-link{
+    background-color:#4f555b;
+    color:rgba(255,255,255,0.8);
+}
+.nav-pills .nav-link{
+    border-radius: 0px;
+}
+.nav-pills .nav-link.active{
+    background-color:#343a40;
+    border-bottom:3px solid #4f555b;
+}

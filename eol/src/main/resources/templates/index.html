@@ -1,22 +1,134 @@
 <!DOCTYPE html>
-<html lang="br"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org "  xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
 <head>
     <meta charset="UTF-8">
-    <title>EOL System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css" />
+    <title>Dashboard</title>
+
 </head>
+
 <body>
-    <h1>BEM VINDO AO EOL</h1>
+<div class="pos-f-t">
+    <nav class="navbar navbar-dark bg-dark">
+        <button class="navbar-toggler" type="button" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="d-flex mr-auto ml-4 justify-content-center d-none d-sm-block">
+            <h1 class="text-info">Dashboard EOL</h1>
+        </div>
 
-    <div>
-        <a th:href="@{/service-order}">Criar nova OS</a>
-        <br>
-        <a th:href="@{/login}">Login</a>
-        <br>
-        <a th:href="@{/sign_up}">Cadastrar</a>
-    </div>
+    </nav>
+</div>
+<div class="main">
+    <div class="menu" id="menu">
+        <ul>
+            <li class="active"><a href="#">Inicio</a></li>
 
-    <div sec:authorize="hasRole('ROLE_ADMIN')">
-        <a th:href="@{/sign_up_installer}">Cadastrar instalador</a>
+           <div sec:authorize="!isAuthenticated()">
+               <li><a th:href="@{/login}">Login</a></li>
+           </div>
+            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                <li><a href="registerT.html">Cadastrar técnico</a></li>
+            </div>
+            <div sec:authorize="hasRole('ROLE_USER')">
+                <li><a th:href="@{/service-order}">Criar nova OS</a></li>
+            </div>
+            <form  sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <li><input type="submit"  class="nav-link" value="Sair do sistema"></li>
+            </form>
+
+        </ul>
     </div>
+    <div sec:authorize="hasRole('ROLE_ADMIN')" class="container-fluid">
+        <div class="row mt-4">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#table1" role="tab"
+                       aria-controls="pills-home" aria-selected="true">Table 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#table2" role="tab" aria-controls="pills-profile"
+                       aria-selected="false">Table 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#table3" role="tab"
+                       aria-controls="pills-contact" aria-selected="false">Table 3</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="table1" role="tabpanel">
+                <table class="table table-responsive" id="table_1" width="100%">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Primeiro</th>
+                        <th scope="col">Último</th>
+                        <th scope="col">Nickname</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+            <!--End table1-->
+            <div class="tab-pane fade" id="table2" role="tabpanel">
+                <table class="table table-responsive" id="table_2" width="100%">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Primeiro</th>
+                        <th scope="col">Último</th>
+                        <th scope="col">Nickname</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div><!-- END table 2-->
+            <div class="tab-pane fade" id="table3" role="tabpanel">
+                <table class="table table-responsive"  id="table_3" width="100%">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Primeiro</th>
+                        <th scope="col">Último</th>
+                        <th scope="col">Nickname</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div><!-- END table 3-->
+
+        </div> <!-- END tab-content -->
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>
+
+<script src="/js/script.js"></script>
+
+
 </body>
+
 </html>

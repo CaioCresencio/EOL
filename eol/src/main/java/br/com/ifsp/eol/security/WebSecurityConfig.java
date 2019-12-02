@@ -35,6 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/service-order")
                         .hasAuthority("ROLE_USER")
+
                     .antMatchers("/", "/**")
                         .permitAll()
                     .and()
