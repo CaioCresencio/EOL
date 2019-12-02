@@ -5,6 +5,8 @@ import br.com.ifsp.eol.repositories.ServiceOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceOrderService {
 
@@ -13,5 +15,9 @@ public class ServiceOrderService {
 
     public ServiceOrder save(ServiceOrder serviceOrder){
         return serviceOrderRepository.save(serviceOrder);
+    }
+
+    public List<ServiceOrder> findAll(){
+        return serviceOrderRepository.findAll();
     }
 }

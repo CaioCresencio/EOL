@@ -62,4 +62,9 @@ $(document).ready(function () {
     fillTable("#table_2");
     fillTable("#table_3");
 
+    $("#teste").click(function(){
+      $.get("list_os/getListas", function(data){
+        alert("Data: " + JSON.stringify(data));
+      });
+    });
 });
