@@ -15,6 +15,7 @@ import java.util.List;
 @Controller
 @RequestMapping("list_os")
 public class ListOsController {
+
     @Autowired
     private ServiceOrderService serviceOrderService;
 
@@ -27,6 +28,7 @@ public class ListOsController {
     public void fillListOs(Model model) {
         model.addAttribute("OS",serviceOrderService.findAll());
     }
+
     @RequestMapping("getListas")
     public @ResponseBody List<ServiceOrder> listar(Model model) {
         return serviceOrderService.findAll();

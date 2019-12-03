@@ -35,7 +35,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/service-order")
                         .hasAuthority("ROLE_USER")
-
+                    .antMatchers("/list_os")
+                        .hasAuthority("ROLE_ADMIN")
                     .antMatchers("/", "/**")
                         .permitAll()
                     .and()
@@ -46,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .permitAll()
                     .and()
-                .csrf().ignoringAntMatchers("/h2-console/**")
+                .csrf().ignoringAntMatchers("/h2-console/**", "/api/**")
                     .and()
                 .headers().frameOptions().sameOrigin();
     }

@@ -3,6 +3,7 @@ package br.com.ifsp.eol.model;
 import br.com.ifsp.eol.model.enums.TypeOrder;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,10 +17,10 @@ public class ServiceOrder {
     @Enumerated(EnumType.STRING)
     private TypeOrder typeOrder;
 
-    private Date create_date;
-    private Date assignment_date;
+    private LocalDate create_date;
+    private LocalDate assignment_date;
 
-    private Date finishing_date;
+    private LocalDate finishing_date;
 
     @OneToOne
     @JoinColumn(name = "location_id")
@@ -34,7 +35,7 @@ public class ServiceOrder {
 
     @PrePersist
     private void createDate() {
-        create_date = new Date();
+        create_date = LocalDate.now();
     }
 
     public Integer getId() {
@@ -45,15 +46,15 @@ public class ServiceOrder {
         return typeOrder;
     }
 
-    public Date getCreate_date() {
+    public LocalDate getCreate_date() {
         return create_date;
     }
 
-    public Date getAssignment_date() {
+    public LocalDate getAssignment_date() {
         return assignment_date;
     }
 
-    public Date getFinishing_date() {
+    public LocalDate getFinishing_date() {
         return finishing_date;
     }
 
@@ -77,15 +78,15 @@ public class ServiceOrder {
         this.typeOrder = typeOrder;
     }
 
-    public void setCreate_date(Date create_date) {
+    public void setCreate_date(LocalDate create_date) {
         this.create_date = create_date;
     }
 
-    public void setAssignment_date(Date assignment_date) {
+    public void setAssignment_date(LocalDate assignment_date) {
         this.assignment_date = assignment_date;
     }
 
-    public void setFinishing_date(Date finishing_date) {
+    public void setFinishing_date(LocalDate finishing_date) {
         this.finishing_date = finishing_date;
     }
 

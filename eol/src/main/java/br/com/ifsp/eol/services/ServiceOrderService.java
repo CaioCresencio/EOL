@@ -20,4 +20,8 @@ public class ServiceOrderService {
     public List<ServiceOrder> findAll(){
         return serviceOrderRepository.findAll();
     }
+
+    public List<ServiceOrder> findAllOsNotStarted(){
+        return serviceOrderRepository.findAll();
+    }
 }
