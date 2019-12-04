@@ -35,19 +35,6 @@ public class EolApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*User user1 = new User("Gabriel", "biel.muitoloko@gmail.com", "123456","175673", "123");
-		userRepository.save(user1);
-
-
-
-
-		ServiceOrder serviceOrder = new ServiceOrder();
-		serviceOrder.setClient(user1);
-		serviceOrder.setInstaller(user2);
-		serviceOrder.setLocation(location);
-		serviceOrder.setTypeOrder(TypeOrder.MONO);
-		serviceOrderRepository.save(serviceOrder);*/
-
 
 		User user = new User("Admin", "admin@eol.com", "123456","175673", ps.encode("123"));
 		user.addRole(Role.ADMIN);
@@ -90,6 +77,7 @@ public class EolApplication implements CommandLineRunner {
 		serviceOrder3.setLocation(location);
 		serviceOrder3.setTypeOrder(TypeOrder.MONO);
 		serviceOrderRepository.save(serviceOrder3);
+
 	}
 
 }

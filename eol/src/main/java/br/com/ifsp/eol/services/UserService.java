@@ -34,4 +34,16 @@ public class UserService {
             return null;
         }
     }
+
+    public User verificaLogin(String email, String password) {
+        User user = repo.findByEmail(email);
+
+        System.out.println(user.getPassword());
+
+        if(pe.matches(password,  user.getPassword())){
+            return user;
+        }
+
+        return null;
+    }
 }
