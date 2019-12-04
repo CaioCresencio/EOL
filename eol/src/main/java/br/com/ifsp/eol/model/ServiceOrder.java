@@ -12,7 +12,7 @@ import java.util.Objects;
 public class ServiceOrder {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private TypeOrder typeOrder;
@@ -38,7 +38,7 @@ public class ServiceOrder {
         create_date = LocalDate.now();
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -70,7 +70,7 @@ public class ServiceOrder {
         return installer;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

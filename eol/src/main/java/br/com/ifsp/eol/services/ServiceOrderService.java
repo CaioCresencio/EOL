@@ -32,14 +32,20 @@ public class ServiceOrderService {
     }
 
     public ServiceOrder attribui(ServiceOrder os, User installer) {
-        os.setInstaller(installer);
-        os.setAssignment_date(LocalDate.now());
+
+        if(os.getInstaller() == null && os.getFinishing_date() == null && os.getAssignment_date() == null){
+            os.setInstaller(installer);
+            os.setAssignment_date(LocalDate.now());
+        }
 
         return serviceOrderRepository.save(os);
     }
 
     public ServiceOrder finalizar(ServiceOrder os) {
-        os.setFinishing_date(LocalDate.now());
+
+        if(os.getInstaller() != null && os.getFinishing_date() == null && os.getAssignment_date() != null) {
+            os.setFinishing_date(LocalDate.now());
+        }
 
         return serviceOrderRepository.save(os);
     }

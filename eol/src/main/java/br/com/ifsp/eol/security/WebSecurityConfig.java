@@ -17,6 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private JWTUtil jwtUtil;
+
+    @Autowired
     private UserDetailsService userDetailsService;
 
 
@@ -51,5 +54,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().ignoringAntMatchers("/h2-console/**", "/api/**")
                     .and()
                 .headers().frameOptions().sameOrigin();
+
     }
 }

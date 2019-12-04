@@ -35,9 +35,13 @@ public class EolApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		/*User user1 = new User("Gabriel", "biel.muitoloko@gmail.com", "123456","175673", "123");
+		User user = new User("Admin", "admin@eol.com", "123456","175673", ps.encode("123"));
+		user.addRole(Role.ADMIN);
+		userRepository.save(user);
+
+		User user1 = new User("Gabriel", "biel.muitoloko@gmail.com", "123456","175673", ps.encode("123"));
 		userRepository.save(user1);
-		User user2 = new User("Caio", "caio.muitoloko@gmail.com", "123456","175673", "123");
+		User user2 = new User("Caio", "caio.muitoloko@gmail.com", "123456","175673", ps.encode("123"));
 		user2.addRole(Role.INSTALLER);
 		userRepository.save(user2);
 
@@ -46,14 +50,12 @@ public class EolApplication implements CommandLineRunner {
 
 		ServiceOrder serviceOrder = new ServiceOrder();
 		serviceOrder.setClient(user1);
-		serviceOrder.setInstaller(user2);
+		//serviceOrder.setInstaller(user2);
 		serviceOrder.setLocation(location);
 		serviceOrder.setTypeOrder(TypeOrder.MONO);
-		serviceOrderRepository.save(serviceOrder);*/
+		serviceOrderRepository.save(serviceOrder);
 
 
-		User user = new User("Admin", "admin@eol.com", "123456","175673", ps.encode("123"));
-		user.addRole(Role.ADMIN);
-		userRepository.save(user);
+
 	}
 }
