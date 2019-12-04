@@ -1,70 +1,75 @@
 $(document).ready(function () {
-    const lang = {
-        "sEmptyTable": "Nenhum registro encontrado",
-        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-        "sInfoPostFix": "",
-        "sInfoThousands": ".",
-        "sLengthMenu": "_MENU_ resultados por página",
-        "sLoadingRecords": "Carregando...",
-        "sProcessing": "Processando...",
-        "sZeroRecords": "Nenhum registro encontrado",
-        "sSearch": "Pesquisar",
-        "oPaginate": {
-            "sNext": "Próximo",
-            "sPrevious": "Anterior",
-            "sFirst": "Primeiro",
-            "sLast": "Último"
-        },
-        "oAria": {
-            "sSortAscending": ": Ordenar colunas de forma ascendente",
-            "sSortDescending": ": Ordenar colunas de forma descendente"
-        },
-        "select": {
-            "rows": {
-                "_": "Selecionado %d linhas",
-                "0": "Nenhuma linha selecionada",
-                "1": "Selecionado 1 linha"
-            }
-        }
-    }
-
-
-
     $(".menu").toggleClass("menu-open");
     $(".navbar-toggler").on("click", function () {
         $(".menu").toggleClass("menu-open");
-
     })
 
-    let fillTable = function (id_table) {
-        const dataObject = [
-            { id: 1, name: 'A' },
-            { id: 2, name: 'B' },
-            { id: 3, name: 'C' }
-        ];
-        const dataSet = [];
-        $.each(dataObject, function (index, data) {
-            dataSet.push([data.id, data.name]);
-        });
-
-        $(id_table).DataTable({
-            data: dataSet,
-            language: lang,
-            columns: [
-                { title: 'ID' },
-                { title: 'Nome' }
-            ]
+    const fillTable1 = function (id_table) {
+        $.get("list_os/getOsDelayed", function(data){
+              // console.log(data)
+              $(`${id_table} tbody tr`).remove();
+               $.each(data, function(index,value){
+                      $(`${id_table} tbody`).append(`<tr>
+                        <td>${value.id}</td>
+                        <td>${value.typeOrder}</td>
+                        <td>${value.client.name}</td>
+                        <td>${value.installer.name}</td>
+                        <td>${value.assignment_date}</td>
+                      </tr>
+                      `)
+                })
         });
     };
-    fillTable("#table_1");
-    fillTable("#table_2");
-    fillTable("#table_3");
 
-    $("#teste").click(function(){
-      $.get("list_os/getListas", function(data){
-        alert("Data: " + JSON.stringify(data));
-      });
-    });
+    const fillTable2 = function (id_table) {
+        $.get("list_os/getUserDto", function(data){
+               console.log(data)
+               $(`${id_table} tbody tr`).remove();
+               $.each(data, function(index,value){
+                      $(`${id_table} tbody`).append(`<tr>
+                          <td>${value.user.id}</td>
+                         <td>${value.user.name}</td>
+                         <td>${value.ammount}</td>
+                      </tr>
+                      `)
+                })
+        });
+    };
+
+     const fillTable3 = function (id_table) {
+            $.get("list_os/getFinishOsDESC", function(data){
+                   console.log(data)
+                   $(`${id_table} tbody tr`).remove();
+                   $.each(data, function(index,value){
+                        $(`${id_table} tbody`).append(`<tr>
+                            <td>${value.user.id}</td>
+                            <td>${value.user.name}</td>
+                            <td>${value.ammount}</td>
+                          </tr>
+                                               `)
+                    })
+            });
+        };
+
+    fillTable1("#table_1");
+    fillTable2("#table_2");
+    fillTable3("#table_3");
+
+
+    $("#bt_table3").on("click", function () {
+        fillTable3("#table_3");
+    })
+    $("#bt_table2").on("click", function () {
+        fillTable2("#table_2");
+    })
+    $("#bt_table1").on("click", function () {
+        fillTable1("#table_1");
+    })
+
+
+
+
+
+
+
 });

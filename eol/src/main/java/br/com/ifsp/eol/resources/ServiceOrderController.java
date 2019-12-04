@@ -1,6 +1,5 @@
 package br.com.ifsp.eol.resources;
 
-import br.com.ifsp.eol.model.Location;
 import br.com.ifsp.eol.model.ServiceOrder;
 import br.com.ifsp.eol.model.User;
 import br.com.ifsp.eol.services.LocationService;
