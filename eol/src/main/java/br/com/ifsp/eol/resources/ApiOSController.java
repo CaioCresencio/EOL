@@ -28,6 +28,11 @@ public class ApiOSController {
         return serviceOrderService.findAllOsNotStarted();
     }
 
+    @GetMapping("/listaOS/{id}")
+    public List<ServiceOrder> getMyOs(@PathVariable("id") Long id) {
+        return serviceOrderService.getMyOSnotStarted(id);
+    }
+
     @PostMapping("/atribuir")
     public ServiceOrder atribuir(@RequestBody AtribuiReqDTO reqDTO){
         User installer = userService.findById(reqDTO.getId_installer());

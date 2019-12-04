@@ -50,9 +50,9 @@ public class ServiceOrderService {
 
     public ServiceOrder finalizar(ServiceOrder os) {
 
-        if(os.getInstaller() != null && os.getFinishing_date() == null && os.getAssignment_date() != null) {
-            os.setFinishing_date(LocalDate.now());
-        }
+
+        os.setFinishing_date(LocalDate.now());
+
 
         return serviceOrderRepository.save(os);
     }
@@ -95,4 +95,9 @@ public class ServiceOrderService {
         }
         return userDTOS;
     }
+
+    public List<ServiceOrder> getMyOSnotStarted(Long id){
+        return serviceOrderRepository.findOSNotStartedByInstaller(id);
+    }
+
 }
