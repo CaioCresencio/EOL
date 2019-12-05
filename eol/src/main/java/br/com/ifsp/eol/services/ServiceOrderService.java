@@ -31,7 +31,7 @@ public class ServiceOrderService {
     }
 
     public List<ServiceOrder> findAllOsNotStarted(){
-        return serviceOrderRepository.findAll();
+        return serviceOrderRepository.findOSNotStarted();
     }
 
     public ServiceOrder findById(Long id_os) {
@@ -41,8 +41,8 @@ public class ServiceOrderService {
     public ServiceOrder attribui(ServiceOrder os, User installer) {
 
 
-            os.setInstaller(installer);
-            os.setAssignment_date(LocalDate.now());
+        os.setInstaller(installer);
+        os.setAssignment_date(LocalDate.now());
 
 
         return serviceOrderRepository.save(os);
