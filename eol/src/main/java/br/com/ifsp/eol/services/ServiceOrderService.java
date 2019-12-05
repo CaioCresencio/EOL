@@ -40,10 +40,10 @@ public class ServiceOrderService {
 
     public ServiceOrder attribui(ServiceOrder os, User installer) {
 
-        if(os.getInstaller() == null && os.getFinishing_date() == null && os.getAssignment_date() == null){
+
             os.setInstaller(installer);
             os.setAssignment_date(LocalDate.now());
-        }
+
 
         return serviceOrderRepository.save(os);
     }
